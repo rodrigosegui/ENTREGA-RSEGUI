@@ -1,20 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar alojamiento</title>
-</head>
-<body>
+{% extends "padre.html" %}
 
-    <form action="/Appsma/resultados" method="GET"> 
+
+{% load static %}
+
+{%  block tittle   %} 
+
+Encontra tu mejor lugar
+
+{%  endblock   %} 
+
+{%  block vehiculo1 %}
+
+<form action="/Appsma/resultados/" method="GET"> 
         
 
-        <input type="text" value="Alojamiento">
-        
-        <input type="submit" value="Buscar">
-    </form>
+    <input type="number" name="capacidad">
+    
+    <input type="submit" value="Buscar">
+</form>
 
-</body>
-</html>
+{% endblock %}
+
+{% block descripcionmain %} 
+                             
+     Ingresa la cantidad de huespedes que debemos alojar                        
+
+{% endblock %}

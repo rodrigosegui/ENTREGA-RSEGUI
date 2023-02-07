@@ -8,12 +8,25 @@
 </head>
 <body>
 
-    <p>Hemos buscado los alojamientos: {{info1}}</p>
+    <p>Hemos buscado los alojamientos con capacidad para : {{info1}}</p>
     
-    {%for Alojamientos in info2 %}
+    
 
-        <p>{{Alojamientos.capacidad}}</p>
+    <ul>
+    {% for alojamientos in info2 %}
 
+        <li>{{alojamientos.capacidad}}</li>
+        <li>{{alojamientos.nombreA}}</li>
+
+   
+   
+   
     {% endfor%}
+
+
+
+
+    </ul>
+    
 </body>
 </html>

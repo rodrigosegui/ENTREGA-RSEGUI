@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from Appsma.models import *
 from Appsma.forms import *
+from django.http import HttpResponse
 # Create your views here.
 
 def inicio(request):
 
-    return render(request,"Appsma/inicio.html")
+    return render(request,"inicio.html")
+
+def nosotros(request):
+
+    return render(request,"nosotros.html")
 
 def ver_alojamientos(request):
 
@@ -15,11 +20,11 @@ def ver_alojamientos(request):
 
 def ver_huepedes(request):
 
-    return render(request,"Appsma/verhuespedes.html")
+    return render(request,"verhuespedes.html")
 
 def ver_vehiculos(request):
     
-    return render(request,"Appsma/vervehiculos.html")
+    return render(request,"vervehiculos.html")
 
 
 def agregaralojamiento(request):
@@ -32,19 +37,20 @@ def agregaralojamiento(request):
             informacion = miFormulario.cleaned_data
             alojamientos = Alojamientos(nombreA=informacion["nombreA"],habitaciones=informacion["habitaciones"], capacidad=informacion["capacidad"],precioxdia=informacion["precioxdia"])
             alojamientos.save()
-            return render(request, "veralojamientos.html")
+            return render(request, "inicio.html")
         
     else:
         miFormulario = AlojamientosFormulario()
 
-    return render(request, "alojamientoformulario.html", {"miFormulario": miFormulario})
+    return render(request, "agregaralojamiento.html", {"miFormulario": miFormulario})
 
 def buscaralojamiento(request):
     return render(request, "buscaralojamiento.html")
 
 def resultados(request):
 
-    nombreAbusqueda = request.GET["nombreA"]
-    resultadosnombreA = Alojamientos.objects.filter(nombreA__icontains=nombreAbusqueda)
-    return render(request, "resultados.html" , {"info1":nombreAbusqueda, "info2":resultadosnombreA})
+    capacidadbusqueda = request.GET["capacidad"]
+    resultadoscapacidad = Alojamientos.objects.filter(capacidad__icontains=capacidadbusqueda)
+    return render(request, "resultados.html" , {"info1":capacidadbusqueda, "info2":resultadoscapacidad})
+
 
